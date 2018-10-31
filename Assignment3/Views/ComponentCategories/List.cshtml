@@ -1,0 +1,32 @@
+﻿@model Assignment3.ViewModels.ComponentTypeListViewModel
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List of Component Types</h2>
+
+<div>
+    <h4>Component Types</h4>
+    @foreach (var componentType in Model.ComponentTypesList)
+    {
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Name: @Html.DisplayName(componentType.ComponentName);
+            </dt>
+            <dd>
+                Details: @Html.DisplayName(componentType.ComponentInfo);
+            </dd>
+            <dd>
+                Status: @Html.DisplayName(componentType.Status.ToString());
+            </dd>
+            <dd>
+                @Html.ActionLink("Edit Component Type", "Edit", "ComponentTypes", @componentType.ComponentTypeId)
+            </dd>
+        </dl>
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
