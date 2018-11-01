@@ -8,30 +8,27 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-    <div class="carousel-inner" role="listbox" href="Components/ComponentsIndex">
-        <div class="item"> 
-            <div class="carousel-caption" role="option">
-                <h1>
-                    Components
-                </h1>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active" style="text-align: center">
+        <h1 >
+            @Html.ActionLink("Component", "ComponentsIndex", "Components")
+        </h1>
                 <p>
                     Click here to:
-                    <br />
+                    <br/>
                     - View more info about Components.
-                    <br />
+                    <br/>
                     - Create new Components
-                    <br />
+                    <br/>
                     - Delete Components
-                    <br />
+                    <br/>
                     - Edit Components
                 </p>
-            </div>
         </div>
-        <div class="item">
-            <h1 style="text-align: center">
+        <div class="item" style="text-align: center">
+            <h1>
                 @Html.ActionLink("Component Types", "ComponentTypesIndex", "ComponentTypes")
             </h1>
-            <div class="carousel-caption" role="option">
                 <p>
                     Click here to:
                     <br/>
@@ -43,26 +40,23 @@
                     <br/>
                     - Edit Components Types
                 </p>
-            </div>
         </div>
-        <div class="item">
-            <h1 style="text-align: center">
+        <div class="item" style="text-align: center">
+            <h1>
                 @Html.ActionLink("Component Categories", "ComponentCategoriesIndex", "ComponentCategories")
             </h1>
-            <div class="carousel-caption" role="option">
                 <p>
                     Click here to:
-                    <br />
+                    <br/>
                     - View more info about Component Categories.
-                    <br />
+                    <br/>
                     - Create new Component Categories
-                    <br />
+                    <br/>
                     - Delete Component Categories
-                    <br />
+                    <br/>
                     - Edit Component Categories
                 </p>
             </div>
-        </div>
     </div>
 
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

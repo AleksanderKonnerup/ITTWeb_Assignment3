@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Data.Entity;
 using Assignment3.Models;
+using Microsoft.EntityFrameworkCore;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
-namespace Assignment3.Models
+namespace Assignment3.Data
 {
     public class Assignment3Context : DbContext
     {
@@ -14,10 +12,10 @@ namespace Assignment3.Models
         {
         }
 
-        public DbSet<Assignment3.Models.Category> Category { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Category> Category { get; set; }
 
-        public DbSet<Assignment3.Models.ComponentType> ComponentType { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ComponentType> ComponentType { get; set; }
 
-        public DbSet<Assignment3.Models.Component> Component { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Component> Component { get; set; }
     }
 }
