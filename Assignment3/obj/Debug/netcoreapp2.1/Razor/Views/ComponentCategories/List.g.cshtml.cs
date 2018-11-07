@@ -120,7 +120,7 @@ using Assignment3.Models;
             WriteLiteral("</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(822, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52e5e737d8ac4b608dc6ca9ba448d351", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cffd25b8a8c845a39eaaaddb87bace43", async() => {
                 BeginContext(844, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();
