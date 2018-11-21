@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 
@@ -19,104 +16,60 @@ namespace Assignment3.Controllers
             _context = context;
         }
 
-        // GET: Components
+        [HttpGet("ComponentIndex")]
         public async Task<IActionResult> ComponentsIndex()
         {
-            return View(await _context.Component.ToListAsync());
+            var components = await _context.Component.ToListAsync();
+            return View(components);
         }
 
-        // GET: Components/Details/5
-        public async Task<IActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var component = await _context.Component
-                .FirstOrDefaultAsync(m => m.ComponentId == id);
-            if (component == null)
-            {
-                return NotFound();
-            }
-
-            return View(component);
-        }
-
-        // GET: Components/Create
-        public IActionResult Create()
+        [HttpGet("CreateComponent")]
+        public IActionResult CreateComponent()
         {
             return View();
         }
 
-        // POST: Components/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("CreateComponent")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ComponentId,ComponentTypeId,ComponentNumber,SerialNo,Status,AdminComment,UserComment,CurrentLoanInformationId")] Component component)
+        public IActionResult Create(Component componentModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(component);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ComponentsIndex));
+                _context.Component.Add(componentModel);
+                _context.SaveChanges();
+                return RedirectToAction("ComponentsIndex");
             }
-            return View(component);
+            return View("ComponentsIndex");
         }
 
         // GET: Components/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        [HttpGet("EditComponent")]
+        public IActionResult Edit(long? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var component = await _context.Component.FindAsync(id);
-            if (component == null)
-            {
-                return NotFound();
-            }
+            var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(id));
             return View(component);
         }
 
-        // POST: Components/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("EditComponent")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ComponentId,ComponentTypeId,ComponentNumber,SerialNo,Status,AdminComment,UserComment,CurrentLoanInformationId")] Component component)
+        public async Task<IActionResult> Edit(long id, Component componentModel)
         {
-            if (id != component.ComponentId)
+            var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(id));
+            if (component != null)
             {
-                return NotFound();
+                _context.Component.Update(componentModel);
             }
-
-            if (ModelState.IsValid)
+            else
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(component);
-                    await _context.SaveChangesAsync();
+                    _context.Component.Add(componentModel);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ComponentExists(component.ComponentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(ComponentsIndex));
             }
-            return View(component);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ComponentsIndex));
         }
 
-        // GET: Components/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
