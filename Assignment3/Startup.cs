@@ -1,5 +1,4 @@
 ﻿using Assignment3.Data;
-using Assignment3.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,7 +29,6 @@ namespace Assignment3
 
             services.AddDbContext<Assignment3Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IComponentRepository, ComponentRepository>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using Assignment3.Models;
+﻿using Assignment3.Models;
 using Microsoft.EntityFrameworkCore;
 using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
@@ -12,10 +11,10 @@ namespace Assignment3.Data
         {
         }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Category> Category { get; set; }
+        public DbSet<Category> Category { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<ComponentType> ComponentType { get; set; }
+        public DbSet<ComponentType> ComponentType { get; set; }
 
-        public Microsoft.EntityFrameworkCore.DbSet<Component> Component { get; set; }
+        public DbSet<Component> Component { get; set; }
     }
 }

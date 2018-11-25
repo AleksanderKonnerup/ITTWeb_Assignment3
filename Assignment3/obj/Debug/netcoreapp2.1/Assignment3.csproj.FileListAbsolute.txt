@@ -67,7 +67,6 @@ C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCa
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\Edit.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\List.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\ComponentsIndex.g.cshtml.cs
-C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Create.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Delete.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Details.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Edit.g.cshtml.cs
@@ -90,3 +89,4 @@ C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.Views.pdb
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.dll
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.pdb
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csproj.CopyComplete
+C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\CreateComponent.g.cshtml.cs
