@@ -5831,7 +5831,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
-      "sha512": "hpSNX6kgb13ABbOmxAD2sj/7J7IN3HWz1AWcmEuouTZM+OeWLSHDmPGlN4eaUDPMCoe1DY7v16D3V0BY+q7BTw==",
+      "sha512": "4JcQJNDSyGXtz9ccBzSBmcPmKg7GiL4LYvtv+YG8C9waNP/xhwuvIycSQOF4a0V+J73JwUopA503O7vb8p5ZUQ==",
       "type": "package",
       "path": "microsoft.codeanalysis.csharp.workspaces/2.8.0",
       "files": [
@@ -5858,7 +5858,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Workspaces.Common/2.8.0": {
-      "sha512": "xt6VmGncJW14z3O0/k7+0cO8w9tB3O6CUL6sM6LesgGmD6zZPbWKY9KpRgV7RewA1flLuXBaUknRjwj0kLA6/g==",
+      "sha512": "AqCiNju6UZy9Sd8HKzxGbpbZf+P8gWpojfvs9hIRfwstqFMZ6OJXf69EUvqJ5C4rWrcf08F7G8WII74KBEFImQ==",
       "type": "package",
       "path": "microsoft.codeanalysis.workspaces.common/2.8.0",
       "files": [
@@ -7506,7 +7506,7 @@
       ]
     },
     "NuGet.Frameworks/4.7.0": {
-      "sha512": "/VaEPsEgj3p5YPLLxbYc6rB8gYIPf+8wCWOAlAe3l/SP0DXcefZ58uJer1ToBKIpwbPN5LkgTXtvilze5UJoYQ==",
+      "sha512": "KuqDbPzjOWbUM6gPMbkvdhlQ10roQAoMM7mNZ8hcY/fH+9J4Zc+qT8dLWoNzGyr0OrxQVdZdbSjy/fxwoICgGg==",
       "type": "package",
       "path": "nuget.frameworks/4.7.0",
       "files": [
@@ -12219,24 +12219,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Aleksander Konnerup\\.nuget\\packages\\": {},
+    "C:\\Users\\Simon\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ITTWebAssignment3\\Assignment3\\Assignment3.csproj",
+      "projectUniqueName": "D:\\OneDrive\\7. Semester\\ITWEB\\Assignment3\\ITTWeb_Assignment3\\Assignment3\\Assignment3.csproj",
       "projectName": "Assignment3",
-      "projectPath": "C:\\ITTWebAssignment3\\Assignment3\\Assignment3.csproj",
-      "packagesPath": "C:\\Users\\Aleksander Konnerup\\.nuget\\packages\\",
-      "outputPath": "C:\\ITTWebAssignment3\\Assignment3\\obj\\",
+      "projectPath": "D:\\OneDrive\\7. Semester\\ITWEB\\Assignment3\\ITTWeb_Assignment3\\Assignment3\\Assignment3.csproj",
+      "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
+      "outputPath": "D:\\OneDrive\\7. Semester\\ITWEB\\Assignment3\\ITTWeb_Assignment3\\Assignment3\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Aleksander Konnerup\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\ServiceFabricSDK.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

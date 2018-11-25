@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Assignment3.Models
 {
     public class Component
     {
+        [Key]
         public long ComponentId { get; set; }
         public long ComponentTypeId { get; set; }
         public int ComponentNumber { get; set; }
