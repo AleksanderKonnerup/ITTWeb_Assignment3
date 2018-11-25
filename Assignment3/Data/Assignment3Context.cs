@@ -11,10 +11,20 @@ namespace Assignment3.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserModel>()
+                .HasOne(x => x.UserCredentials)
+                .WithOne()
+                .HasForeignKey<UserCredentials>(x => x.Email);
+
+        }
+
         public DbSet<Category> Category { get; set; }
 
         public DbSet<ComponentType> ComponentType { get; set; }
 
         public DbSet<Component> Component { get; set; }
+        public DbSet<UserModel> User { get; set; }
     }
 }
