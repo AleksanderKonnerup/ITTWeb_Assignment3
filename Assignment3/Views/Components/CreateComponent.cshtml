@@ -1,8 +1,8 @@
 ﻿@model Component
 
 @{
-    ViewBag.Title = "Create New Component";
-    Layout = "";
+    ViewData["Title"] = "Create New Component";
+    Layout = "_Layout";
 }
 <html>
 <head>
@@ -35,14 +35,13 @@
         <div class="sk-rect5"></div>
     </div>
 </div>
-<h2>Create</h2>
 
-<h4>Component</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        @using (Html.BeginForm("Create", "Components", FormMethod.Post))
-        {
+<h2>Create</h2>
+<div class="container">
+    <h4>Component</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -62,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Status" class="control-label"></label>
-                    <select asp-for="Status" asp-items="@Html.GetEnumSelectList<ComponentStatus>()" class="form-control"></select>
+                    <select asp-for="Status" class="form-control"></select>
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -84,15 +83,13 @@
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </form>
-        }
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="ComponentsIndex">Back to List</a>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 </body>
 </html>
