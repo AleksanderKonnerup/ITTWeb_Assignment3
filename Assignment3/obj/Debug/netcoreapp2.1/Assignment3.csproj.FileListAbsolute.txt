@@ -75,7 +75,6 @@ C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTy
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Delete.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Details.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Edit.g.cshtml.cs
-C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
