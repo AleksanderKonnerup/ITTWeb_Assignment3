@@ -94,7 +94,8 @@
                 @Html.DisplayFor(modelItem => item.CurrentLoanInformationId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ComponentId">Edit</a> |
+                <a asp-action="Edit" asp-route-id="@item.ComponentId">Edit</a>
+                <br />
                 <a asp-action="Delete" asp-route-id="@item.ComponentId">Delete</a>
             </td>
         </tr>

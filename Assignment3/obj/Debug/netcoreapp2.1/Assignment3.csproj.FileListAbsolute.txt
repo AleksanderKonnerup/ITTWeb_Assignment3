@@ -133,3 +133,4 @@ C:\ITTWebAssignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.Views.dll
 C:\ITTWebAssignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.Views.pdb
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.Views.pdb
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csproj.CopyComplete
+C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csprojAssemblyReference.cache
