@@ -23,11 +23,11 @@ namespace Assignment3.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //public IActionResult Login()
+        //{
+        //    return View();
+        //}
 
 
         [AllowAnonymous]
