@@ -54,7 +54,7 @@
                 Status: @Html.DisplayName(componentType.Status.ToString());
             </dd>
             <dd>
-                @Html.ActionLink("Edit Component Type", "Edit", "ComponentTypes", @componentType.ComponentTypeId)
+                @Html.ActionLink("Edit Component Type", "Edit", "ComponentTypes", componentType.ComponentTypeId)
             </dd>
         </dl>
     }

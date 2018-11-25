@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Assignment3.Models.ComponentType>
+﻿@model IEnumerable<ComponentType>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Component Type";
     Layout = "_Layout";
 
 }
@@ -36,19 +36,19 @@
         <div class="sk-rect5"></div>
     </div>
 </div>
-<h2>Index</h2>
+<h2>Component Types</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Component Type</a>
 </p>
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ComponentName)
+            @Html.DisplayName("Component Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ComponentInfo)
+            @Html.DisplayName("Component Info")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
@@ -60,16 +60,16 @@
             @Html.DisplayNameFor(model => model.Datasheet)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
+            @Html.DisplayName("Image Url/Image Source")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Manufacturer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WikiLink)
+            @Html.DisplayName("Wiki Link")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AdminComment)
+            @Html.DisplayName("Admin Comment")
         </th>
         <th></th>
     </tr>
