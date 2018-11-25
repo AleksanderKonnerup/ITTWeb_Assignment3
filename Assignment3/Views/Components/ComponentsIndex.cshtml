@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
 }
 <html>
 <head>
@@ -44,25 +45,25 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ComponentTypeId)
+            @Html.DisplayName("Component Type Id")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ComponentNumber)
+            @Html.DisplayName("Component Number")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SerialNo)
+            @Html.DisplayName("Serial No")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayName("Status")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AdminComment)
+            @Html.DisplayName("Admin Comment")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserComment)
+            @Html.DisplayName("User Comment")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentLoanInformationId)
+            @Html.DisplayName("Current Loan Information Id")
         </th>
         <th></th>
     </tr>
