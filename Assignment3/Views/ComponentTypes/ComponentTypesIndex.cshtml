@@ -1,22 +1,17 @@
-﻿@model IEnumerable<Assignment3.Models.ComponentType>
+﻿@model IEnumerable<ComponentType>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Component Type";
     Layout = "_Layout";
 
 }
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="~/css/animate.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/css/templatemo-style.css">
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -36,83 +31,86 @@
         <div class="sk-rect5"></div>
     </div>
 </div>
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ComponentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ComponentInfo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Datasheet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WikiLink)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdminComment)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
+<h2>Component Types</h2>
+    
+<div class="row">
+    <p>
+        <a asp-action="Create">Create New Component Type</a>
+    </p>
+    <table class="table">
+        <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComponentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComponentInfo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datasheet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacturer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WikiLink)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdminComment)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ComponentTypeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ComponentTypeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ComponentTypeId">Delete</a>
-            </td>
+            <th>
+                @Html.DisplayName("Component Name")
+            </th>
+            <th>
+                @Html.DisplayName("Component Info")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datasheet)
+            </th>
+            <th>
+                @Html.DisplayName("Image Url/Image Source")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayName("Wiki Link")
+            </th>
+            <th>
+                @Html.DisplayName("Admin Comment")
+            </th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComponentInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datasheet)
+                </td>
+                <td style="width: 10px">
+                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WikiLink)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdminComment)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ComponentTypeId">Edit</a>
+                    <br />
+                    <a asp-action="Details" asp-route-id="@item.ComponentTypeId">Details</a>
+                    <br />
+                    <a asp-action="Delete" asp-route-id="@item.ComponentTypeId">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

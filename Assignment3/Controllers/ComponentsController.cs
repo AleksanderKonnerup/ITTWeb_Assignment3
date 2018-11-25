@@ -53,9 +53,13 @@ namespace Assignment3.Controllers
 
         [HttpPost("EditComponent")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, Component componentModel)
+        public async Task<IActionResult> Edit(Component componentModel)
         {
-            var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(id));
+            var _id = componentModel.ComponentId;
+
+            var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(_id));
+            _context.Entry<Component>(component).State = EntityState.Detached;
+            _context.Entry<Component>(componentModel).State = EntityState.Detached;
             if (component != null)
             {
                 _context.Component.Update(componentModel);
@@ -67,6 +71,8 @@ namespace Assignment3.Controllers
                     _context.Component.Add(componentModel);
                 }
             }
+
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ComponentsIndex));
         }

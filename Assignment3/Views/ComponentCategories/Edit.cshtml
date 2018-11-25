@@ -24,8 +24,6 @@
     <script src="~/js/wow.min.js"></script>
     <script src="~/js/custom.js"></script>
 </head>
-
-
 <body id="top">
 <div class="preloader">
     <div class="sk-spinner sk-spinner-wave">
@@ -41,12 +39,12 @@
 <h4>Category</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-4 col-sm-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CategoryId" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Component Category Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -60,9 +58,11 @@
 <div>
     <a asp-action="ComponentCategoriesIndex">Back to List</a>
 </div>
-
+</body>
+</html>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>
+
+
+
