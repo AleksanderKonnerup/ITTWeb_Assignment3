@@ -75,7 +75,6 @@ C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTy
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Delete.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Details.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Edit.g.cshtml.cs
-C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
@@ -90,3 +89,48 @@ C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.dll
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.pdb
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csproj.CopyComplete
 C:\ITTWebAssignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\CreateComponent.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.deps.json
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.runtimeconfig.json
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.runtimeconfig.dev.json
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.dll
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.pdb
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.Views.dll
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\bin\Debug\netcoreapp2.1\Assignment3.Views.pdb
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csprojAssemblyReference.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csproj.CoreCompileInputs.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.RazorAssemblyInfo.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.RazorAssemblyInfo.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.AssemblyInfoInputs.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.AssemblyInfo.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.TagHelpers.input.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.TagHelpers.output.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.RazorCoreGenerate.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\ComponentCategoriesIndex.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\Create.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\Delete.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\Details.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\Edit.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentCategories\List.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\ComponentsIndex.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\CreateComponent.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Delete.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Details.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Components\Edit.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\ComponentTypesIndex.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Create.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Delete.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Details.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\ComponentTypes\Edit.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.RazorTargetAssemblyInfo.cache
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.RazorTargetAssemblyInfo.cs
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.Views.pdb
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.dll
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.pdb
+D:\OneDrive\7. Semester\ITWEB\Assignment3\ITTWeb_Assignment3\Assignment3\obj\Debug\netcoreapp2.1\Assignment3.csproj.CopyComplete
