@@ -28,7 +28,7 @@ namespace Assignment3
             });
 
             services.AddDbContext<Assignment3Context>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging());
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
