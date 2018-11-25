@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ComponentType>
+﻿@model Assignment3.ViewModels.ComponentTypesIndexViewModel
 
 @{
     ViewData["Title"] = "Component Type";
@@ -39,38 +39,41 @@
     </p>
     <table class="table">
         <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Component Name")
-            </th>
-            <th>
-                @Html.DisplayName("Component Info")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Datasheet)
-            </th>
-            <th>
-                @Html.DisplayName("Image Url/Image Source")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayName("Wiki Link")
-            </th>
-            <th>
-                @Html.DisplayName("Admin Comment")
-            </th>
-        </tr>
-        </thead>
+            @foreach (var item in Model.ComponentTypes)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayName("Component Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Component Info")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(modelItem => item.Location)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(modelItem => item.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(modelItem => item.Datasheet)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Image Url/Image Source")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(modelItem => item.Manufacturer)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Wiki Link")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Admin Comment")
+                    </th>
+                </tr>
+            }
+            </thead>
         <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ComponentTypes)
         {
             <tr>
                 <td>

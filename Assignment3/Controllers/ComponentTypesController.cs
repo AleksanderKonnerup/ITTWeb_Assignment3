@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
+using Assignment3.ViewModels;
 
 namespace Assignment3.Controllers
 {
@@ -22,7 +23,13 @@ namespace Assignment3.Controllers
         // GET: ComponentTypes
         public async Task<IActionResult> ComponentTypesIndex()
         {
-            return View(await _context.ComponentType.ToListAsync());
+            var viewModel = new ComponentTypesIndexViewModel() {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                //Categories = await _context.Category.ToListAsync(),
+                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+            };
+
+            return View(viewModel);
         }
 
         // GET: ComponentTypes/Details/5
