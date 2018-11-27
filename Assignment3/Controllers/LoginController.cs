@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Assignment3.Controllers
 {
+    [Route("[controller]")]
     public class LoginController : Controller
     {
         private readonly Assignment3Context _context;
@@ -23,32 +24,16 @@ namespace Assignment3.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
-        //    return View();
-        //}
-
-
-        [AllowAnonymous]
-        [HttpPost("Register")]
-        public IActionResult Register([FromBody]RegisterModel registerModel)
+        [HttpGet("Login")]
+        public IActionResult Login()
         {
-            var user = _context.User.FirstOrDefault(x => x.Email == registerModel.Email);
-            if (user != null)
-                BadRequest("User already exists");
-
-
-            CreateUser(registerModel);
-
-            return Ok();
+            return View();
         }
-
 
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody]LoginModel login)
+        public async Task<IActionResult> Login(LoginModel login)
         {
             IActionResult response = Unauthorized();
 
@@ -119,30 +104,6 @@ namespace Assignment3.Controllers
             }
 
             return returnValue;
-        }
-
-        public void CreateUser(RegisterModel registerModel)
-        {
-            var salt = Salt.Create();
-            var hash = Hash.Create(registerModel.Password, salt);
-
-            var credentials = new UserCredentials() { Email = registerModel.Email, Hash = hash, Salt = salt };
-
-
-            var newUser = new UserModel()
-            {
-                FirstName = registerModel.FirstName,
-                LastName = registerModel.LastName,
-                AUId = registerModel.AUId,
-                PhoneNumber = registerModel.PhoneNumber,
-                StaffInitials = registerModel.StaffInitials,
-                Email = registerModel.Email,
-                Role = Role.Admin,
-                UserCredentials = credentials
-            };
-
-
-            _context.User.Add(newUser);
         }
     }
 }

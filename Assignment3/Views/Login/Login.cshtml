@@ -1,10 +1,13 @@
-﻿@{
+﻿@model Assignment3.Models.LoginModel
+
+@{
     ViewData["Title"] = "ITTWeb Assignment 3";
     Layout = "_Layout";
 
 }
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -34,30 +37,34 @@
             <div class="sk-rect4"></div>
             <div class="sk-rect5"></div>
         </div>
+
     </div>
-    <div>
-        <h2 style="font-weight: bold">Embedded Stock</h2>
-        <p style="font-weight: bold; font-size: larger">
-            <div>Reservationer og søgning efter komponenter sker på hjemmesiden Stockmanager.ase.au.dk</div>
-            <br />
-            <div>Login forgår med dit AUid og password som bruges på "mit au"(første gang skal du registrere dig)</div>
-            <br />
-            <div>Afhentning og aflevering kan ske ved Mathias i Shannon lokale 017A</div>
 
-            <br />
-
-            <div>Åbningstiden:</div>
-            <div>Tirsdag kl. 12.30-14.00</div>
-            <div>Torsdag kl. 14-15.30</div>
-
-            <br />
-
-            <div>Har du spørgsmål kan du skrive til EmbeddedStock@gmail.com</div>
-
-            <br />
-
-            <div>Møde embedded stock på facebook (lukket gruppe)</div>
-        </p>
+    <h4>Login</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
     </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </body>
 </html>
