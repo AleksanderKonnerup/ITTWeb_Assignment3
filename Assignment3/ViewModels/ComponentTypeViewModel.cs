@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Assignment3.Models;
 using Microsoft.AspNetCore.Http;
 
-namespace Assignment3.Models
+namespace Assignment3.ViewModels
 {
-    public class ComponentType
+    public class ComponentTypeViewModel
     {
-        public ComponentType()
-        {
-            Components = new List<Component>();
-            Categories = new List<Category>();
-        }
         public long ComponentTypeId { get; set; }
         public string ComponentName { get; set; }
         public string ComponentInfo { get; set; }
@@ -21,11 +19,6 @@ namespace Assignment3.Models
         public string Manufacturer { get; set; }
         public string WikiLink { get; set; }
         public string AdminComment { get; set; }
-        public virtual ESImage Image { get; set; }
-        [NotMapped]
-        public ICollection<Component> Components { get; protected set; }
-        [NotMapped]
-        public ICollection<Category> Categories { get; protected set; }
+        public IFormFile Image { get; set; }
     }
-
 }

@@ -10,6 +10,7 @@ namespace Assignment3.Models
         public byte[] Thumbnail { get; set; }
         public byte[] ImageData { get; set; }
     }
+
     public enum ComponentTypeStatus
     {
         Available,

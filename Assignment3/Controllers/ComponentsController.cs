@@ -8,6 +8,7 @@ using Assignment3.Models;
 
 namespace Assignment3.Controllers
 {
+    [Route("[controller]")]
     public class ComponentsController : Controller
     {
         private readonly Assignment3Context _context;
@@ -32,7 +33,7 @@ namespace Assignment3.Controllers
 
         [HttpPost("CreateComponent")]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Component componentModel)
+        public IActionResult CreateComponent(Component componentModel)
         {
             if (ModelState.IsValid)
             {
@@ -43,15 +44,14 @@ namespace Assignment3.Controllers
             return View("ComponentsIndex");
         }
 
-        // GET: Components/Edit/5
-        [HttpGet("EditComponent")]
+        [HttpGet("Edit")]
         public IActionResult Edit(long? id)
         {
             var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(id));
             return View(component);
         }
 
-        [HttpPost("EditComponent")]
+        [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Component componentModel)
         {
@@ -77,6 +77,7 @@ namespace Assignment3.Controllers
             return RedirectToAction(nameof(ComponentsIndex));
         }
 
+        [HttpGet("Delete")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -93,13 +94,16 @@ namespace Assignment3.Controllers
 
             return View(component);
         }
-
-        // POST: Components/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var component = await _context.Component.FindAsync(id);
+            if (component == null)
+            {
+                return NotFound();
+            }
             _context.Component.Remove(component);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ComponentsIndex));

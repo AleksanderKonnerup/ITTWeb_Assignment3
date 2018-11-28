@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
+using System.Web;
+using Assignment3.ViewModels;
 
 namespace Assignment3.Controllers
 {
+    [Route("[controller]")]
     public class ComponentTypesController : Controller
     {
         private readonly Assignment3Context _context;
@@ -19,13 +21,13 @@ namespace Assignment3.Controllers
             _context = context;
         }
 
-        // GET: ComponentTypes
+        [HttpGet("ComponentTypesIndex")]
         public async Task<IActionResult> ComponentTypesIndex()
         {
             return View(await _context.ComponentType.ToListAsync());
         }
 
-        // GET: ComponentTypes/Details/5
+        [HttpGet("Details")]
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -43,29 +45,48 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        // GET: ComponentTypes/Create
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ComponentTypes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ComponentTypeId,ComponentName,ComponentInfo,Location,Status,Datasheet,ImageUrl,Manufacturer,WikiLink,AdminComment")] ComponentType componentType)
+        public async Task<IActionResult> Create(ComponentTypeViewModel componentType)
         {
+            //Ift. ESImage og persistering, hvad skal der gøres?
+            //Her har vi lige nu en Image Url, skal der downloades ned fra URL'en og gemmes ned i db som byte[] eller hvad?
             if (ModelState.IsValid)
             {
-                _context.Add(componentType);
+                    var componentTypeModel = new ComponentType()
+                    {
+                        ComponentName = componentType.ComponentName,
+                        ComponentInfo = componentType.ComponentInfo,
+                        Status = componentType.Status,
+                        Datasheet = componentType.Datasheet,
+                        WikiLink = componentType.WikiLink,
+                        Manufacturer = componentType.Manufacturer,
+                        AdminComment = componentType.AdminComment,
+                        ImageUrl = componentType.ImageUrl,
+                    };
+                using (var memoryStream = new MemoryStream())
+                {
+                    await componentType.Image.CopyToAsync(memoryStream);
+                    if (componentTypeModel.Image != null)
+                    {
+                        componentTypeModel.Image.ImageData = memoryStream.ToArray();
+                    }
+                }
+                _context.Add(componentTypeModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ComponentTypesIndex));
+                
             }
             return View(componentType);
         }
 
-        // GET: ComponentTypes/Edit/5
+        [HttpGet("Edit")]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -81,10 +102,7 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        // POST: ComponentTypes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("ComponentTypeId,ComponentName,ComponentInfo,Location,Status,Datasheet,ImageUrl,Manufacturer,WikiLink,AdminComment")] ComponentType componentType)
         {
@@ -116,7 +134,7 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        // GET: ComponentTypes/Delete/5
+        [HttpGet("Delete")]
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -134,14 +152,18 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        // POST: ComponentTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(long? id)
         {
             var componentType = await _context.ComponentType.FindAsync(id);
-            _context.ComponentType.Remove(componentType);
+            if(componentType == null)
+            {
+                return NotFound();
+            }
+;            _context.ComponentType.Remove(componentType);
             await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(ComponentTypesIndex));
         }
 
@@ -149,5 +171,6 @@ namespace Assignment3.Controllers
         {
             return _context.ComponentType.Any(e => e.ComponentTypeId == id);
         }
+
     }
 }
