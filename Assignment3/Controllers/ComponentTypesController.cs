@@ -6,9 +6,7 @@ using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
-using System.Web;
 using Assignment3.ViewModels;
-
 namespace Assignment3.Controllers
 {
     [Route("[controller]")]
@@ -24,7 +22,13 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentTypesIndex")]
         public async Task<IActionResult> ComponentTypesIndex()
         {
-            return View(await _context.ComponentType.ToListAsync());
+            var viewModel = new ComponentTypesIndexViewModel() {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                //Categories = await _context.Category.ToListAsync(),
+                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet("Details")]
@@ -51,12 +55,11 @@ namespace Assignment3.Controllers
             return View();
         }
 
+
         [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ComponentTypeViewModel componentType)
         {
-            //Ift. ESImage og persistering, hvad skal der gøres?
-            //Her har vi lige nu en Image Url, skal der downloades ned fra URL'en og gemmes ned i db som byte[] eller hvad?
             if (ModelState.IsValid)
             {
                     var componentTypeModel = new ComponentType()
@@ -102,6 +105,7 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
+        // POST: ComponentTypes/Edit/5
         [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("ComponentTypeId,ComponentName,ComponentInfo,Location,Status,Datasheet,ImageUrl,Manufacturer,WikiLink,AdminComment")] ComponentType componentType)
@@ -152,11 +156,12 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        [HttpPost("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long? id)
         {
             var componentType = await _context.ComponentType.FindAsync(id);
+
             if(componentType == null)
             {
                 return NotFound();
