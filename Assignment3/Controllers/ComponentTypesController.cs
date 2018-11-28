@@ -24,8 +24,8 @@ namespace Assignment3.Controllers
         {
             var viewModel = new ComponentTypesIndexViewModel() {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                //Categories = await _context.Category.ToListAsync(),
-                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+                Categories = await _context.Category.ToListAsync(),
+                SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
             };
 
             return View(viewModel);
@@ -75,6 +75,12 @@ namespace Assignment3.Controllers
                     };
                 using (var memoryStream = new MemoryStream())
                 {
+                    if (!componentType.Image.FileName.EndsWith(".jpg"))
+                    {
+                        ViewBag.ImgError = "Please Insert an image of the right file type";
+                        return View("Create", componentType);
+                    }
+
                     await componentType.Image.CopyToAsync(memoryStream);
                     if (componentTypeModel.Image != null)
                     {
@@ -108,7 +114,7 @@ namespace Assignment3.Controllers
         // POST: ComponentTypes/Edit/5
         [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ComponentTypeId,ComponentName,ComponentInfo,Location,Status,Datasheet,ImageUrl,Manufacturer,WikiLink,AdminComment")] ComponentType componentType)
+        public async Task<IActionResult> Edit(long id, ComponentType componentType)
         {
             if (id != componentType.ComponentTypeId)
             {
@@ -156,7 +162,7 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long? id)
         {

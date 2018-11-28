@@ -58,7 +58,7 @@
                         @Html.DisplayNameFor(modelItem => item.Datasheet)
                     </th>
                     <th>
-                        @Html.DisplayName("Image Url/Image Source")
+                        @Html.DisplayName("Image")
                     </th>
                     <th>
                         @Html.DisplayNameFor(modelItem => item.Manufacturer)
@@ -92,6 +92,8 @@
                     @Html.DisplayFor(modelItem => item.Datasheet)
                 </td>
                 <td style="width: 10px">
+                    @*Skal indsætte billedet her efter det er hentet op og konveret fra byte[],
+                        måske gøre url mindre, da den repræsenterer image source*@
                     @Html.DisplayFor(modelItem => item.ImageUrl)
                 </td>
                 <td>

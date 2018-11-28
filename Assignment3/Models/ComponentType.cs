@@ -8,9 +8,9 @@ namespace Assignment3.Models
     {
         public ComponentType()
         {
-            Categories = new List<Category>();;
             ComponentIdsList = new List<int>();
-            CategorieIdsList = new List<int>();        }
+            CategorieIdsList = new List<int>();
+        }
         public long ComponentTypeId { get; set; }
         public string ComponentName { get; set; }
         public string ComponentInfo { get; set; }
@@ -29,13 +29,12 @@ namespace Assignment3.Models
         public string ComponentIds
         {
             get { return string.Join(',', ComponentIdsList); }
-            set { ComponentIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
+            set { } //ComponentIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
         }
         public string CategorieIds
         {
             get { return string.Join(',', CategorieIdsList); }
-            set { CategorieIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
+            set {  } //CategorieIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
         }
     }
-
 }
