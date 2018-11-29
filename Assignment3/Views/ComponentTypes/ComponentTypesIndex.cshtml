@@ -39,8 +39,6 @@
     </p>
     <table class="table">
         <thead>
-            @foreach (var item in Model.ComponentTypes)
-            {
                 <tr>
                     <th>
                         @Html.DisplayName("Component Name")
@@ -49,19 +47,19 @@
                         @Html.DisplayName("Component Info")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(modelItem => item.Location)
+                        @Html.DisplayName("Location")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(modelItem => item.Status)
+                        @Html.DisplayName("Status")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(modelItem => item.Datasheet)
+                        @Html.DisplayName("Datasheet")
                     </th>
                     <th>
                         @Html.DisplayName("Image")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(modelItem => item.Manufacturer)
+                        @Html.DisplayName("Manufacturer")
                     </th>
                     <th>
                         @Html.DisplayName("Wiki Link")
@@ -70,7 +68,6 @@
                         @Html.DisplayName("Admin Comment")
                     </th>
                 </tr>
-            }
             </thead>
         <tbody>
         @foreach (var item in Model.ComponentTypes)
@@ -92,8 +89,9 @@
                     @Html.DisplayFor(modelItem => item.Datasheet)
                 </td>
                 <td style="width: 10px">
-                    @*Skal indsætte billedet her efter det er hentet op og konveret fra byte[],
-                        måske gøre url mindre, da den repræsenterer image source*@
+                    @if(item.Image != null) { 
+                        <img src="@Url.Action("GetImgForComponentType", "ComponentTypes", item)"/>
+                    }
                     @Html.DisplayFor(modelItem => item.ImageUrl)
                 </td>
                 <td>

@@ -24,8 +24,9 @@ namespace Assignment3.Controllers
         {
             var viewModel = new ComponentTypesIndexViewModel() {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                Categories = await _context.Category.ToListAsync(),
-                SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+                Images = await _context.ComponentType.Select(x => x.Image).ToListAsync(),
+                //Categories = await _context.Category.ToListAsync(),
+                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
             };
 
             return View(viewModel);
@@ -62,17 +63,18 @@ namespace Assignment3.Controllers
         {
             if (ModelState.IsValid)
             {
-                    var componentTypeModel = new ComponentType()
-                    {
-                        ComponentName = componentType.ComponentName,
-                        ComponentInfo = componentType.ComponentInfo,
-                        Status = componentType.Status,
-                        Datasheet = componentType.Datasheet,
-                        WikiLink = componentType.WikiLink,
-                        Manufacturer = componentType.Manufacturer,
-                        AdminComment = componentType.AdminComment,
-                        ImageUrl = componentType.ImageUrl,
-                    };
+                var componentTypeModel = new ComponentType()
+                {
+                    ComponentName = componentType.ComponentName,
+                    ComponentInfo = componentType.ComponentInfo,
+                    Status = componentType.Status,
+                    Datasheet = componentType.Datasheet,
+                    WikiLink = componentType.WikiLink,
+                    Manufacturer = componentType.Manufacturer,
+                    AdminComment = componentType.AdminComment,
+                    ImageUrl = componentType.ImageUrl,
+                };
+
                 using (var memoryStream = new MemoryStream())
                 {
                     if (!componentType.Image.FileName.EndsWith(".jpg"))
@@ -84,7 +86,11 @@ namespace Assignment3.Controllers
                     await componentType.Image.CopyToAsync(memoryStream);
                     if (componentTypeModel.Image != null)
                     {
-                        componentTypeModel.Image.ImageData = memoryStream.ToArray();
+                        componentTypeModel.Image = new ESImage()
+                        {
+                            ImageData = memoryStream.ToArray(),
+                            ImageMimeType = componentType.Image.ContentType
+                        };
                     }
                 }
                 _context.Add(componentTypeModel);
@@ -181,6 +187,18 @@ namespace Assignment3.Controllers
         private bool ComponentTypeExists(long id)
         {
             return _context.ComponentType.Any(e => e.ComponentTypeId == id);
+        }
+
+        [HttpGet("GetImgForComponentType")]
+        public IActionResult GetImgForComponentType(ComponentType componentType)
+        {
+            if (componentType.Image == null) return NotFound();
+            return GetImgFromByteArray(componentType.Image.ImageData);
+        }
+        
+        private FileResult GetImgFromByteArray(byte[] imgBytes)
+        {
+            return File(imgBytes, "image/*");
         }
 
     }
