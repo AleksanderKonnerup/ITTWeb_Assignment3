@@ -82,7 +82,7 @@ namespace Assignment3.Controllers
 
         [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, Category category)
         {
             if (id != category.CategoryId)
             {
@@ -132,7 +132,7 @@ namespace Assignment3.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var category = await _context.Category.FindAsync(id);
             if (category == null)

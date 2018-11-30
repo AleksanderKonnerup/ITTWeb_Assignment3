@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Assignment3.Models;
+﻿using Assignment3.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Assignment3.ViewModels

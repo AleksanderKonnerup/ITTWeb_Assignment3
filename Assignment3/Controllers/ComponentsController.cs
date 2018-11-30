@@ -57,24 +57,16 @@ namespace Assignment3.Controllers
         {
             var _id = componentModel.ComponentId;
 
+            if (ModelState.IsValid) { 
             var component = _context.Component.SingleOrDefault(x => x.ComponentId.Equals(_id));
             _context.Entry<Component>(component).State = EntityState.Detached;
             _context.Entry<Component>(componentModel).State = EntityState.Detached;
-            if (component != null)
-            {
-                _context.Component.Update(componentModel);
-            }
-            else
-            {
-                if (ModelState.IsValid)
-                {
-                    _context.Component.Add(componentModel);
-                }
-            }
-
+            _context.Component.Update(componentModel);
 
             await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(ComponentsIndex));
+
         }
 
         [HttpGet("Delete")]
@@ -95,9 +87,9 @@ namespace Assignment3.Controllers
             return View(component);
         }
         
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             var component = await _context.Component.FindAsync(id);
             if (component == null)

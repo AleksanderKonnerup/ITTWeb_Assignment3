@@ -31,4 +31,10 @@
     <Folder Include="Util\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Drawing.VisualStudio.15.0">
+      <HintPath>..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\System.Drawing.VisualStudio.15.0.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Assignment3.Models
             ComponentIdsList = new List<int>();
             CategorieIdsList = new List<int>();
         }
+        [Key]
         public long ComponentTypeId { get; set; }
         public string ComponentName { get; set; }
         public string ComponentInfo { get; set; }
@@ -21,7 +23,9 @@ namespace Assignment3.Models
         public string Manufacturer { get; set; }
         public string WikiLink { get; set; }
         public string AdminComment { get; set; }
-        public virtual ESImage Image { get; set; }
+        public string FileName { get; set; }
+        public string ImageMimeType { get; set; }
+        public byte[] Image { get; set; }
         [NotMapped]
         public IEnumerable<int> ComponentIdsList { get; protected set; }
         [NotMapped]

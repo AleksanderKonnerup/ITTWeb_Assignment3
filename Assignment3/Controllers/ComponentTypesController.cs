@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Http;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
+using FileResult = Microsoft.AspNetCore.Mvc.FileResult;
+
 namespace Assignment3.Controllers
 {
     [Route("[controller]")]
@@ -22,9 +27,9 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentTypesIndex")]
         public async Task<IActionResult> ComponentTypesIndex()
         {
+
             var viewModel = new ComponentTypesIndexViewModel() {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                Images = await _context.ComponentType.Select(x => x.Image).ToListAsync(),
                 //Categories = await _context.Category.ToListAsync(),
                 //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
             };
@@ -73,30 +78,31 @@ namespace Assignment3.Controllers
                     Manufacturer = componentType.Manufacturer,
                     AdminComment = componentType.AdminComment,
                     ImageUrl = componentType.ImageUrl,
+                    Location = componentType.Location
                 };
 
-                using (var memoryStream = new MemoryStream())
-                {
-                    if (!componentType.Image.FileName.EndsWith(".jpg"))
-                    {
-                        ViewBag.ImgError = "Please Insert an image of the right file type";
-                        return View("Create", componentType);
-                    }
 
-                    await componentType.Image.CopyToAsync(memoryStream);
-                    if (componentTypeModel.Image != null)
+                if (!componentType.Image.FileName.EndsWith(".jpg") && !componentType.Image.FileName.EndsWith(".png"))
+                {
+                    ViewBag.ImgError = "Please Insert an image of the right file type";
+                    return View("Edit", componentType);
+                }
+
+                if (componentType.Image != null)
+                {
+                    using (var ms = new MemoryStream())
                     {
-                        componentTypeModel.Image = new ESImage()
-                        {
-                            ImageData = memoryStream.ToArray(),
-                            ImageMimeType = componentType.Image.ContentType
-                        };
+                        await componentType.Image.CopyToAsync(ms);
+                        var fileBytes = ms.ToArray();
+                        componentTypeModel.Image = fileBytes;
+                        componentTypeModel.ImageMimeType = componentType.Image.ContentType;
+                        componentTypeModel.FileName = componentType.Image.FileName;
                     }
                 }
+
                 _context.Add(componentTypeModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ComponentTypesIndex));
-                
             }
             return View(componentType);
         }
@@ -114,40 +120,67 @@ namespace Assignment3.Controllers
             {
                 return NotFound();
             }
-            return View(componentType);
+
+            var componentTypeViewModel = new ComponentTypeViewModel()
+            {
+                ComponentTypeId = componentType.ComponentTypeId,
+                AdminComment = componentType.AdminComment,
+                ComponentInfo = componentType.ComponentInfo,
+                ComponentName = componentType.ComponentName,
+                Datasheet = componentType.Datasheet,
+                ImageUrl = componentType.ImageUrl,
+                Location = componentType.Location,
+                Manufacturer = componentType.Manufacturer,
+                Status = componentType.Status,
+                WikiLink = componentType.WikiLink,
+                Image = new FormFile(Stream.Null, 0, 0, componentType.FileName, componentType.FileName)
+            };
+            
+            return View(componentTypeViewModel);
         }
 
-        // POST: ComponentTypes/Edit/5
         [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, ComponentType componentType)
+        public async Task<IActionResult> Edit([FromBody]ComponentTypeViewModel componentType)
         {
-            if (id != componentType.ComponentTypeId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
+                var componentTypeModel = new ComponentType()
                 {
-                    _context.Update(componentType);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                    ComponentName = componentType.ComponentName,
+                    ComponentInfo = componentType.ComponentInfo,
+                    Status = componentType.Status,
+                    Datasheet = componentType.Datasheet,
+                    WikiLink = componentType.WikiLink,
+                    Manufacturer = componentType.Manufacturer,
+                    AdminComment = componentType.AdminComment,
+                    ImageUrl = componentType.ImageUrl,
+                };
+
+                if (!componentType.Image.FileName.EndsWith(".jpg"))
                 {
-                    if (!ComponentTypeExists(componentType.ComponentTypeId))
+                    ViewBag.ImgError = "Please Insert an image of the right file type";
+                    return View("Edit", componentType);
+                }
+
+                if (componentType.Image != null)
+                {
+
+                    using (var reader = new StreamReader(componentType.Image.OpenReadStream()))
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        string contentAsString = reader.ReadToEnd();
+                        byte[] contentAsByteArray = GetBytes(contentAsString);
+                        componentTypeModel.Image = contentAsByteArray;
+                        componentTypeModel.ImageMimeType = componentType.Image.ContentType;
+                        componentTypeModel.FileName = componentType.Image.FileName;
                     }
                 }
+                
+                _context.Update(componentTypeModel);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(ComponentTypesIndex));
             }
-            return View(componentType);
+        return View(componentType);
         }
 
         [HttpGet("Delete")]
@@ -170,7 +203,7 @@ namespace Assignment3.Controllers
 
         [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long? id)
+        public async Task<IActionResult> Delete(long id)
         {
             var componentType = await _context.ComponentType.FindAsync(id);
 
@@ -184,22 +217,26 @@ namespace Assignment3.Controllers
             return RedirectToAction(nameof(ComponentTypesIndex));
         }
 
+        [Route("GetImgFromComponentType")]
+        public FileContentResult GetImgFromComponentType(long id)
+        {
+
+            byte[] byteArray = _context.ComponentType.Find(id).Image;
+            return byteArray != null
+                ? new FileContentResult(byteArray, "image/jpg")
+                : null;
+        }
+
         private bool ComponentTypeExists(long id)
         {
             return _context.ComponentType.Any(e => e.ComponentTypeId == id);
         }
 
-        [HttpGet("GetImgForComponentType")]
-        public IActionResult GetImgForComponentType(ComponentType componentType)
+        private static byte[] GetBytes(string str)
         {
-            if (componentType.Image == null) return NotFound();
-            return GetImgFromByteArray(componentType.Image.ImageData);
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
         }
-        
-        private FileResult GetImgFromByteArray(byte[] imgBytes)
-        {
-            return File(imgBytes, "image/*");
-        }
-
     }
 }

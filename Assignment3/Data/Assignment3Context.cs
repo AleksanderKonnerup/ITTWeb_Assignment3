@@ -26,5 +26,6 @@ namespace Assignment3.Data
 
         public DbSet<Component> Component { get; set; }
         public DbSet<UserModel> User { get; set; }
+        public DbSet<ESImage> Image { get; set; }
     }
 }

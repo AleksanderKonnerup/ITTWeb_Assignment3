@@ -4,14 +4,16 @@ using Assignment3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Assignment3.Migrations
 {
     [DbContext(typeof(Assignment3Context))]
-    partial class Assignment3ContextModelSnapshot : ModelSnapshot
+    [Migration("20181130135845_yesyes")]
+    partial class yesyes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,11 +77,7 @@ namespace Assignment3.Migrations
 
                     b.Property<string>("Datasheet");
 
-                    b.Property<string>("FileName");
-
-                    b.Property<byte[]>("Image");
-
-                    b.Property<string>("ImageMimeType");
+                    b.Property<long?>("ImageESImageId");
 
                     b.Property<string>("ImageUrl");
 
@@ -92,6 +90,8 @@ namespace Assignment3.Migrations
                     b.Property<string>("WikiLink");
 
                     b.HasKey("ComponentTypeId");
+
+                    b.HasIndex("ImageESImageId");
 
                     b.ToTable("ComponentType");
                 });
@@ -147,6 +147,13 @@ namespace Assignment3.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Assignment3.Models.ComponentType", b =>
+                {
+                    b.HasOne("Assignment3.Models.ESImage", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageESImageId");
                 });
 
             modelBuilder.Entity("Assignment3.Models.UserCredentials", b =>

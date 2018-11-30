@@ -9,6 +9,5 @@ namespace Assignment3.ViewModels
         public int SelectedCategoryId { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<ComponentType> ComponentTypes { get; set; }
-        public IEnumerable<ESImage> Images { get; set; }
     }
 }
