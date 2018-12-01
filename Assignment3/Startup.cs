@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Assignment3
 {
@@ -28,6 +30,7 @@ namespace Assignment3
                 {
                     options.ExpireTimeSpan = TimeSpan.FromHours(1);
                     options.LoginPath = new PathString("/Login/Login");
+                    options.AccessDeniedPath = new PathString("/Home/Error");
                     options.Cookie.HttpOnly = true;
                     options.Cookie.Name = "auth_cookie";
                 });
@@ -66,7 +69,7 @@ namespace Assignment3
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}");
+                    template: "{controller=Login}/{action=Login}");
             });
         }
     }

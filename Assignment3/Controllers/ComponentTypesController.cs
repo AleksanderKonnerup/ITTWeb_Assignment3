@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FileResult = Microsoft.AspNetCore.Mvc.FileResult;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class ComponentTypesController : Controller
     {
         private readonly Assignment3Context _context;
@@ -38,6 +38,7 @@ namespace Assignment3.Controllers
 
             return View(viewModel);
         }
+
         [HttpGet("ComponentTypesIndexForCategory")]
         public async Task<IActionResult> ComponentTypesIndexForCategory(int selectedCategoryId)
         {
@@ -72,7 +73,7 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        [HttpGet("Create")]
+        [HttpGet("Create"), Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var categoriesList = new List<SelectListItem>();
@@ -89,7 +90,7 @@ namespace Assignment3.Controllers
         }
 
 
-        [HttpPost("Create")]
+        [HttpPost("Create"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ComponentTypeViewModel componentType)
         {

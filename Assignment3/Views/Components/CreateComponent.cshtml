@@ -1,4 +1,4 @@
-﻿@model Component
+﻿@model Assignment3.ViewModels.ComponentCreateViewModel
 
 @{
     ViewData["Title"] = "Create New Component";
@@ -45,39 +45,38 @@
                 <form asp-action="CreateComponent" method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="ComponentTypeId" class="control-label">Component Type Id</label>
-                        <input asp-for="ComponentTypeId" class="form-control" />
-                        <span asp-validation-for="ComponentTypeId" class="text-danger"></span>
+                        @*@Html.ListBoxFor(x => x.SelectedCategories, Model.Categories, new { style = "width: 350px", multiple = "multiple", required = true, @class = "form-control" })*@
+                        @Html.DropDownListFor(x => x.SelectedComponentTypeId, new SelectList(Model.ComponentTypes.Select(x => x.ComponentTypeId)), new { @class = "form-control" })
                     </div>
                     <div class="form-group">
-                        <label asp-for="ComponentNumber" class="control-label">Component Number</label>
-                        <input asp-for="ComponentNumber" class="form-control" />
-                        <span asp-validation-for="ComponentNumber" class="text-danger"></span>
+                        <label asp-for="@Model.Component.ComponentNumber" class="control-label">Component Number</label>
+                        <input asp-for="@Model.Component.ComponentNumber" class="form-control" />
+                        <span asp-validation-for="@Model.Component.ComponentNumber" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="SerialNo" class="control-label">Serial No</label>
-                        <input asp-for="SerialNo" class="form-control" />
-                        <span asp-validation-for="SerialNo" class="text-danger"></span>
+                        <label asp-for="@Model.Component.SerialNo" class="control-label">Serial No</label>
+                        <input asp-for="@Model.Component.SerialNo" class="form-control" />
+                        <span asp-validation-for="@Model.Component.SerialNo" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Status" class="control-label"></label>
-                        <select asp-for="Status" asp-items="@(Html.GetEnumSelectList<ComponentStatus>())" class="form-control"></select>
-                        <span asp-validation-for="Status" class="text-danger"></span>
+                        <label asp-for="@Model.Component.Status" class="control-label"></label>
+                        <select asp-for="@Model.Component.Status" asp-items="@(Html.GetEnumSelectList<ComponentStatus>())" class="form-control"></select>
+                        <span asp-validation-for="@Model.Component.Status" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="AdminComment" class="control-label">Admin Comment</label>
-                        <input asp-for="AdminComment" class="form-control" />
-                        <span asp-validation-for="AdminComment" class="text-danger"></span>
+                        <label asp-for="@Model.Component.AdminComment" class="control-label">Admin Comment</label>
+                        <input asp-for="@Model.Component.AdminComment" class="form-control" />
+                        <span asp-validation-for="@Model.Component.AdminComment" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="UserComment" class="control-label">User Comment</label>
-                        <input asp-for="UserComment" class="form-control" />
-                        <span asp-validation-for="UserComment" class="text-danger"></span>
+                        <label asp-for="@Model.Component.UserComment" class="control-label">User Comment</label>
+                        <input asp-for="@Model.Component.UserComment" class="form-control" />
+                        <span asp-validation-for="@Model.Component.UserComment" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="CurrentLoanInformationId" class="control-label">Current Loan Information Id</label>
-                        <input asp-for="CurrentLoanInformationId" class="form-control" />
-                        <span asp-validation-for="CurrentLoanInformationId" class="text-danger"></span>
+                        <label asp-for="@Model.Component.CurrentLoanInformationId" class="control-label">Current Loan Information Id</label>
+                        <input asp-for="@Model.Component.CurrentLoanInformationId" class="form-control" />
+                        <span asp-validation-for="@Model.Component.CurrentLoanInformationId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-success" />

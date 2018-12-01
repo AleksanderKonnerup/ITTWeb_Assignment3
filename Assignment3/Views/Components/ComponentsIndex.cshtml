@@ -41,7 +41,8 @@
     <p>
         <a asp-action="CreateComponent">Create New</a>
     </p>
-    @using (Html.BeginForm("ComponentIndexForCategory", "Components", FormMethod.Get))
+
+    @using (Html.BeginForm("ComponentIndexForType", "Components", FormMethod.Get))
     {
         <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: right; padding-left: 0px">
             @Html.DropDownListFor(x => x.SelectedComponentTypeId, Model.ComponentTypes.Select(x => new SelectListItem{Text = x.ComponentName, Value = x.ComponentTypeId.ToString()}), new { @class = "form-control", style = "width: 250px" })
@@ -80,11 +81,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Components.Where(x => x.ComponentIdsList.Contains(Model.SelectedComponentTypeId)))
+            @foreach (var item in Model.Components)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ComponentTypeId)
+                        @Html.DisplayFor(modelItem => item.ComponentTypeIdsList.ToArray()[1])
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ComponentNumber)
