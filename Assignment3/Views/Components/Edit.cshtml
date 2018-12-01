@@ -1,7 +1,7 @@
 ﻿@model Assignment3.Models.Component
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Component";
     Layout = "_Layout";
 
 }
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/css/animate.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     
     <link rel="stylesheet" href="~/css/templatemo-style.css">
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -27,72 +27,71 @@
 
 
 <body id="top">
-<div class="preloader">
-    <div class="sk-spinner sk-spinner-wave">
-        <div class="sk-rect1"></div>
-        <div class="sk-rect2"></div>
-        <div class="sk-rect3"></div>
-        <div class="sk-rect4"></div>
-        <div class="sk-rect5"></div>
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
     </div>
-</div>
-<h2>Edit</h2>
+    <h2>Edit</h2>
 
-<h4>Component</h4>
-<hr />
-<div class="container">
-    <div class="col-lg-12 col-md-12 col-sm-12">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ComponentId" />
-            <div class="form-group">
-                <label asp-for="ComponentTypeId" class="control-label">Component Type Id</label>
-                <input asp-for="ComponentTypeId" class="form-control" />
-                <span asp-validation-for="ComponentTypeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ComponentNumber" class="control-label">Component Number</label>
-                <input asp-for="ComponentNumber" class="form-control" />
-                <span asp-validation-for="ComponentNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SerialNo" class="control-label">Serial No</label>
-                <input asp-for="SerialNo" class="form-control" />
-                <span asp-validation-for="SerialNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" asp-items="@Html.GetEnumSelectList<ComponentStatus>()" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AdminComment" class="control-label">Admin Comment</label>
-                <input asp-for="AdminComment" class="form-control" />
-                <span asp-validation-for="AdminComment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserComment" class="control-label">User Comment</label>
-                <input asp-for="UserComment" class="form-control" />
-                <span asp-validation-for="UserComment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CurrentLoanInformationId" class="control-label">Current Loan Information Id</label>
-                <input asp-for="CurrentLoanInformationId" class="form-control" />
-                <span asp-validation-for="CurrentLoanInformationId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+    <h4>Component</h4>
+    <hr />
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ComponentId" />
+                <div class="form-group">
+                    <label asp-for="ComponentTypeId" class="control-label">Component Type Id</label>
+                    <input asp-for="ComponentTypeId" class="form-control" />
+                    <span asp-validation-for="ComponentTypeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ComponentNumber" class="control-label">Component Number</label>
+                    <input asp-for="ComponentNumber" class="form-control" />
+                    <span asp-validation-for="ComponentNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SerialNo" class="control-label">Serial No</label>
+                    <input asp-for="SerialNo" class="form-control" />
+                    <span asp-validation-for="SerialNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <select asp-for="Status" asp-items="@(Html.GetEnumSelectList<ComponentStatus>())" class="form-control"></select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AdminComment" class="control-label">Admin Comment</label>
+                    <input asp-for="AdminComment" class="form-control" />
+                    <span asp-validation-for="AdminComment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserComment" class="control-label">User Comment</label>
+                    <input asp-for="UserComment" class="form-control" />
+                    <span asp-validation-for="UserComment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CurrentLoanInformationId" class="control-label">Current Loan Information Id</label>
+                    <input asp-for="CurrentLoanInformationId" class="form-control" />
+                    <span asp-validation-for="CurrentLoanInformationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="ComponentsIndex">Back to List</a>
-</div>
-
+    <div>
+        <a asp-action="ComponentsIndex" class="btn btn-primary">Back to List</a>
+    </div>
+</body>
+</html>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

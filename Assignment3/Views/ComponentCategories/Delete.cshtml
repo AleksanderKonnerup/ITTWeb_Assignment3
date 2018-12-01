@@ -1,7 +1,7 @@
 ﻿@model Assignment3.Models.Category
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Component Category";
     Layout = "_Layout";
 
 }
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/css/animate.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     
     <link rel="stylesheet" href="~/css/templatemo-style.css">
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -52,10 +52,10 @@
         </dd>
     </dl>
 
-    <form asp-action="Delete">
+    <form asp-action="Delete" method="post">
         <input type="hidden" asp-for="CategoryId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="ComponentCategoriesIndex">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="ComponentCategoriesIndex" class="btn btn-primary">Back to List</a>
     </form>
 </div>
 </body>

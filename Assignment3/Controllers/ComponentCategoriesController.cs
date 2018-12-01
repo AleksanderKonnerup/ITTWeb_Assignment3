@@ -11,6 +11,7 @@ using Assignment3.ViewModels;
 
 namespace Assignment3.Controllers
 {
+    [Route("[controller]")]
     public class ComponentCategoriesController : Controller
     {
         private readonly Assignment3Context _context;
@@ -20,13 +21,13 @@ namespace Assignment3.Controllers
             _context = context;
         }
 
-        // GET: ComponentCategories
+        [HttpGet("ComponentCategoriesIndex")]
         public async Task<IActionResult> ComponentCategoriesIndex()
         {
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: ComponentCategories/Details/5
+        [HttpGet("Details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,18 +45,15 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        // GET: ComponentCategories/Create
+        [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: ComponentCategories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +64,7 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        // GET: ComponentCategories/Edit/5
+        [HttpGet("Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,12 +80,9 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        // POST: ComponentCategories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, Category category)
         {
             if (id != category.CategoryId)
             {
@@ -117,7 +112,7 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        // GET: ComponentCategories/Delete/5
+        [HttpGet("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,12 +130,15 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        // POST: ComponentCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var category = await _context.Category.FindAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
             _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ComponentCategoriesIndex));
@@ -150,9 +148,8 @@ namespace Assignment3.Controllers
         {
             return _context.Category.Any(e => e.CategoryId == id);
         }
-
-        // GET: ComponentCategories/List/category
-        [HttpGet]
+        
+        [HttpGet("List")]
         public async Task<IActionResult> List(Category category)
         {
             var Category = await _context.Category.FindAsync(category.CategoryId);

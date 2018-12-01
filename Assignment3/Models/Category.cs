@@ -8,7 +8,7 @@ namespace Assignment3.Models
     {
         public Category()
         {
-            ComponentTypes = new List<ComponentType>();
+            //ComponentTypes = new List<ComponentType>();
         }
 
         public int CategoryId { get; set; }

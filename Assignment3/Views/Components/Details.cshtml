@@ -1,7 +1,7 @@
 ﻿@model Assignment3.Models.Component
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Component Details";
     Layout = "_Layout";
 
 }
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/css/animate.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     
     <link rel="stylesheet" href="~/css/templatemo-style.css">
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -87,8 +87,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ComponentId">Edit</a> |
-    <a asp-action="ComponentsIndex">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ComponentId" class="btn btn-default">Edit</a> |
+    <a asp-action="ComponentsIndex" class="btn btn-primary">Back to List</a>
 </div>
 </body>
 </html>

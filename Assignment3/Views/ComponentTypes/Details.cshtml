@@ -1,7 +1,7 @@
 ﻿@model Assignment3.Models.ComponentType
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Component Type Details";
     Layout = "_Layout";
 
 }
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/css/animate.min.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+     
     <link rel="stylesheet" href="~/css/templatemo-style.css">
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -27,80 +27,91 @@
 
 
 <body id="top">
-<div class="preloader">
-    <div class="sk-spinner sk-spinner-wave">
-        <div class="sk-rect1"></div>
-        <div class="sk-rect2"></div>
-        <div class="sk-rect3"></div>
-        <div class="sk-rect4"></div>
-        <div class="sk-rect5"></div>
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
     </div>
-</div>
-<h2>Component Type Details</h2>
+    <h2>Component Type Details</h2>
 
-<div>
-    <h4>Component Type</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Component Name")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ComponentName)
-        </dd>
-        <dt>
-            @Html.DisplayName("Component Info")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ComponentInfo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Datasheet)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Datasheet)
-        </dd>
-        <dt>
-            @Html.DisplayName("Image Url")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Manufacturer)
-        </dd>
-        <dt>
-            @Html.DisplayName("Wiki Link")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WikiLink)
-        </dd>
-        <dt>
-            @Html.DisplayName("Admin Comment")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AdminComment)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ComponentTypeId">Edit Component Type</a> |
-    <a asp-action="ComponentTypesIndex">Back to List</a>
-</div>
+    <div>
+        <h4>Component Type</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayName("Component Name")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ComponentName)
+            </dd>
+            <dt>
+                @Html.DisplayName("Component Info")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ComponentInfo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Datasheet)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Datasheet)
+            </dd>
+            <dt>
+                @Html.DisplayName("Image")
+            </dt>
+            <dd>
+                @if(Model.Image != null)
+                {
+                    var imgsourceFromUrlActions = Url.Action("GetImgFromComponentType", "ComponentTypes", new { id = Model.ComponentTypeId });
+
+                    <img src="@imgsourceFromUrlActions" alt="@Model.FileName" height="200" width="200" />
+                }
+            </dd>
+            <dt>
+                @Html.DisplayName("Image Url")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ImageUrl)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Manufacturer)
+            </dd>
+            <dt>
+                @Html.DisplayName("Wiki Link")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.WikiLink)
+            </dd>
+            <dt>
+                @Html.DisplayName("Admin Comment")
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AdminComment)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ComponentTypeId" class="btn btn-default">Edit Component Type</a> |
+        <a asp-action="ComponentTypesIndex" class="btn btn-primary">Back to List</a>
+    </div>
 </body>
 </html>
