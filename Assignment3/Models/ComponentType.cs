@@ -26,15 +26,8 @@ namespace Assignment3.Models
         public string FileName { get; set; }
         public string ImageMimeType { get; set; }
         public byte[] Image { get; set; }
-        //[NotMapped]
-        //public IEnumerable<int> ComponentIdsList { get; set; }
         [NotMapped]
         public IEnumerable<int> CategorieIdsList { get; set; }
-        //public string ComponentIds
-        //{
-        //    get { return string.Join(',', ComponentIdsList); }
-        //    set { ComponentIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
-        //}
         public string CategorieIds
         {
             get { return string.Join(',', CategorieIdsList); }

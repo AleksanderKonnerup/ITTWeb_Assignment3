@@ -8,6 +8,6 @@ namespace Assignment3.ViewModels
     {
         public IEnumerable<Component> Components { get; set; }
         public IEnumerable<ComponentType> ComponentTypes { get; set; }
-        public int SelectedComponentTypeId { get; set; }
+        public long SelectedComponentTypeId { get; set; }
     }
 }
