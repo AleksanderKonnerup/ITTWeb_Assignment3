@@ -66,7 +66,7 @@ namespace Assignment3
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}");
+                    template: "{controller=Login}/{action=Login}");
             });
         }
     }

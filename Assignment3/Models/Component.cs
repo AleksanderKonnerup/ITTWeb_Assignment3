@@ -7,7 +7,6 @@ namespace Assignment3.Models
     public class Component
     {
         public long ComponentId { get; set; }
-        public long ComponentTypeId { get; set; }
         public int ComponentNumber { get; set; }
         public string SerialNo { get; set; }
         public ComponentStatus Status { get; set; }
@@ -15,10 +14,10 @@ namespace Assignment3.Models
         public string UserComment { get; set; }
         public long? CurrentLoanInformationId { get; set; }
         [NotMapped]
-        public IEnumerable<long> ComponentIdsList { get; set; }
-        public string ComponentIds
+        public IEnumerable<long> ComponentTypeIdsList { get; set; }
+        public string ComponentTypeIds
         {
-            get { return string.Join(',', ComponentIdsList); }
+            get { return string.Join(',', ComponentTypeIdsList); }
             set
             {
                 var tempValue = value.Split(',');
@@ -29,7 +28,7 @@ namespace Assignment3.Models
                     fin.Add(Int32.Parse(val));
                 }
 
-                ComponentIdsList = fin;
+                ComponentTypeIdsList = fin;
             }
         }
     }

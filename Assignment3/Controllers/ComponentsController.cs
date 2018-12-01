@@ -33,18 +33,26 @@ namespace Assignment3.Controllers
         }
 
         [HttpGet("CreateComponent")]
-        public IActionResult CreateComponent()
+        public async Task<IActionResult> CreateComponent()
         {
-            return View();
+            var viewModel = new ComponentCreateViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost("CreateComponent")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateComponent(Component componentModel)
+        public IActionResult CreateComponent(ComponentCreateViewModel componentViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Component.Add(componentModel);
+                var tempList = new List<long>() { _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId, componentViewModel.SelectedComponentTypeId};
+                componentViewModel.Component.ComponentTypeIdsList = tempList;
+                _context.Component.Add(componentViewModel.Component);
                 _context.SaveChanges();
                 return RedirectToAction("ComponentsIndex");
             }

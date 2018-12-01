@@ -79,11 +79,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Components.Where(x => x.ComponentIdsList.Contains(Model.SelectedComponentTypeId)))
+            @foreach (var item in Model.Components.Where(x => x.ComponentTypeIdsList.Contains(Model.SelectedComponentTypeId)))
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ComponentTypeId)
+                        @Html.DisplayFor(modelItem => item.ComponentTypeIdsList.LastOrDefault())
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ComponentNumber)
