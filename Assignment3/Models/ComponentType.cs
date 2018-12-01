@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http;
 using System.Linq;
 namespace Assignment3.Models
 {
@@ -9,7 +9,7 @@ namespace Assignment3.Models
     {
         public ComponentType()
         {
-            ComponentIdsList = new List<int>();
+            //ComponentIdsList = new List<int>();
             CategorieIdsList = new List<int>();
         }
         [Key]
@@ -26,19 +26,29 @@ namespace Assignment3.Models
         public string FileName { get; set; }
         public string ImageMimeType { get; set; }
         public byte[] Image { get; set; }
+        //[NotMapped]
+        //public IEnumerable<int> ComponentIdsList { get; set; }
         [NotMapped]
-        public IEnumerable<int> ComponentIdsList { get; protected set; }
-        [NotMapped]
-        public IEnumerable<int> CategorieIdsList { get; protected set; }
-        public string ComponentIds
-        {
-            get { return string.Join(',', ComponentIdsList); }
-            set { } //ComponentIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
-        }
+        public IEnumerable<int> CategorieIdsList { get; set; }
+        //public string ComponentIds
+        //{
+        //    get { return string.Join(',', ComponentIdsList); }
+        //    set { ComponentIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
+        //}
         public string CategorieIds
         {
             get { return string.Join(',', CategorieIdsList); }
-            set {  } //CategorieIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
+            set {
+                var tempValue = value.Split(',');
+                var fin = new List<int>();
+
+                foreach(var val in tempValue)
+                {
+                    fin.Add(Int32.Parse(val));
+                }
+
+                CategorieIdsList = fin;
+            }
         }
     }
 }

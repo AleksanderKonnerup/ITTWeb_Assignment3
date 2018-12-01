@@ -30,11 +30,25 @@ namespace Assignment3.Controllers
 
             var viewModel = new ComponentTypesIndexViewModel() {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                //Categories = await _context.Category.ToListAsync(),
-                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+                Categories = await _context.Category.ToListAsync(),
+                SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.Name == "All").Result.CategoryId
             };
 
             return View(viewModel);
+        }
+        [HttpGet("ComponentTypesIndexForCategory")]
+        public async Task<IActionResult> ComponentTypesIndexForCategory(int selectedCategoryId)
+        {
+
+            var viewModel = new ComponentTypesIndexViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+            };
+
+            viewModel.Categories = await _context.Category.ToListAsync();
+            viewModel.SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.CategoryId == selectedCategoryId).Result.CategoryId;
+
+            return View("ComponentTypesIndex", viewModel);
         }
 
         [HttpGet("Details")]
@@ -58,7 +72,12 @@ namespace Assignment3.Controllers
         [HttpGet("Create")]
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new ComponentTypeViewModel()
+            {
+                Categories = _context.Category.ToList()
+            };
+
+            return View(viewModel);
         }
 
 
@@ -78,7 +97,8 @@ namespace Assignment3.Controllers
                     Manufacturer = componentType.Manufacturer,
                     AdminComment = componentType.AdminComment,
                     ImageUrl = componentType.ImageUrl,
-                    Location = componentType.Location
+                    Location = componentType.Location,
+                    CategorieIdsList = componentType.SelectedCategories
                 };
 
 
