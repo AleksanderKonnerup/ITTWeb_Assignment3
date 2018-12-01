@@ -22,15 +22,14 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentIndex")]
         public async Task<IActionResult> ComponentsIndex()
         {
-            var viewModel = new ComponentIndexViewModel
+    var viewModel = new ComponentIndexViewModel()
             {
                 Components = await _context.Component.ToListAsync(),
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                SelectedComponentTypeId = 0
+                SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId
             };
-
-            return View(viewModel);
-        }
+           
+            return View(viewModel);        }
 
 
         [HttpGet("ComponentIndexForCategory")]

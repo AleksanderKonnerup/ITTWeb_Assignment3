@@ -80,7 +80,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Components)
+            @foreach (var item in Model.Components.Where(x => x.ComponentIdsList.Contains(Model.SelectedComponentTypeId)))
             {
                 <tr>
                     <td>
