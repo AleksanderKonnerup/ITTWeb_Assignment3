@@ -87,7 +87,7 @@ namespace Assignment3.Controllers
             return response;
         }
 
-        public UserModel Authenticate(LoginModel login)
+        private UserModel Authenticate(LoginModel login)
         {
             var user = _context.User.First(x => x.Email == login.Email);
 
