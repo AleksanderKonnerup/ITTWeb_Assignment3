@@ -86,12 +86,20 @@
             @Html.DisplayFor(model => model.CurrentLoanInformationId)
         </dd>
     </dl>
-
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="ComponentId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+    
+    
+<div class="row">
+    @using (Html.BeginForm("Delete", "ComponentTypes", FormMethod.Post))
+    {
+        @Html.Hidden("id", Model.ComponentId)
+        <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: right">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+    <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: left">
         <a asp-action="ComponentsIndex" class="btn btn-primary">Back to List</a>
-    </form>
+    </div>
+    </div>
 </div>
 </body>
 </html>
