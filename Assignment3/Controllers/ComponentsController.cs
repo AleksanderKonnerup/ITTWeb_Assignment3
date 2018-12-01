@@ -23,15 +23,30 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentIndex")]
         public async Task<IActionResult> ComponentsIndex()
         {
-            var viewModel = new ComponentIndexViewModel()
+    var viewModel = new ComponentIndexViewModel()
             {
                 Components = await _context.Component.ToListAsync(),
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
                 SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId
             };
            
-            return View(viewModel);
-        }
+            return View(viewModel);        }
+
+
+        //[HttpGet("ComponentIndexForCategory")]
+        //public async Task<IActionResult> ComponentIndexForCategory(long selectedComponentType)
+        //{
+
+        //    var viewModel = new ComponentIndexViewModel
+        //    {
+        //        Components = await _context.Component.Where(x => x.ComponentTypeIdsList.Contains(selectedComponentType)).ToListAsync(),
+        //        ComponentTypes = await _context.ComponentType.ToListAsync(),
+        //        SelectedComponentTypeId = selectedComponentType
+        //    };
+
+
+        //    return View("ComponentsIndex", viewModel);
+        //}
 
         [HttpGet("ComponentIndexForCategory")]
         public async Task<IActionResult> ComponentIndexForType(int selectedComponentTypeId)
@@ -39,10 +54,9 @@ namespace Assignment3.Controllers
             var viewModel = new ComponentIndexViewModel()
             {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                Components = await _context.Component.Where(x => x.ComponentTypeIdsList.Contains(selectedComponentTypeId)).ToListAsync()
+                Components = await _context.Component.Where(x => x.ComponentTypeIdsList.Contains(selectedComponentTypeId)).ToListAsync(),
+                SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentTypeId == selectedComponentTypeId).Result.ComponentTypeId
             };
-
-            viewModel.SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentTypeId == selectedComponentTypeId).Result.ComponentTypeId;
 
             return View("ComponentsIndex", viewModel);
         }

@@ -31,11 +31,12 @@ namespace Assignment3.Models
         public string CategorieIds
         {
             get { return string.Join(',', CategorieIdsList); }
-            set {
+            set
+            {
                 var tempValue = value.Split(',');
                 var fin = new List<int>();
 
-                foreach(var val in tempValue)
+                foreach (var val in tempValue)
                 {
                     fin.Add(Int32.Parse(val));
                 }

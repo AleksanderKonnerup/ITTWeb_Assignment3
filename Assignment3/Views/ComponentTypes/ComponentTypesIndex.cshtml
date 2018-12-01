@@ -35,22 +35,23 @@
     </div>
     <h2>Component Types</h2>
 
-    <div class="row">
-        <p>
-            <a asp-action="Create">Create New Component Type</a>
-        </p>
-
-        @using (Html.BeginForm("ComponentTypesIndexForCategory", "ComponentTypes", FormMethod.Get))
-        {
-            //@Html.HiddenFor(Model => Model.SelectedCategoryId)
-            <div>
-                @Html.DropDownListFor(x => x.SelectedCategoryId, new SelectList(Model.Categories.Select(x => x.CategoryId)), new { @class = "form-control", style = "width: 250px" })
-            </div>
-            <div>
-                <input type="submit" id="GetSessionsBtn" value="Select" class="btn btn-primary" />
-            </div>
-        }
-
+<div class="row">
+    <p>
+        <a asp-action="Create">Create New Component Type</a>
+    </p>
+</div>
+<div class="row">
+    @using (Html.BeginForm("ComponentTypesIndexForCategory", "ComponentTypes", FormMethod.Get))
+    {
+        <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: right; padding-left: 0px">
+            @Html.DropDownListFor(x => x.SelectedCategoryId, Model.Categories.Select(x => new SelectListItem{Text = x.Name, Value = x.CategoryId.ToString()}), new { @class = "form-control" })
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: left">
+            <input type="submit" id="GetSessionsBtn" value="Select" class="btn btn-primary" />
+        </div>
+    }
+    <br/>
+    <hr/>
         <table class="table">
             <thead>
                 <tr>

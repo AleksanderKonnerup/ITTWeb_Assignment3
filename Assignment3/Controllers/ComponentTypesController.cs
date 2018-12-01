@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Assignment3.Data;
@@ -7,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
 using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using FileResult = Microsoft.AspNetCore.Mvc.FileResult;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
@@ -38,13 +43,14 @@ namespace Assignment3.Controllers
         public async Task<IActionResult> ComponentTypesIndexForCategory(int selectedCategoryId)
         {
 
-            var viewModel = new ComponentTypesIndexViewModel()
+            var viewModel = new ComponentTypesIndexViewModel
             {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
+                Categories = await _context.Category.ToListAsync(),
+                SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.CategoryId == selectedCategoryId)
+                    .Result.CategoryId,
             };
 
-            viewModel.Categories = await _context.Category.ToListAsync();
-            viewModel.SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.CategoryId == selectedCategoryId).Result.CategoryId;
 
             return View("ComponentTypesIndex", viewModel);
         }
@@ -70,9 +76,14 @@ namespace Assignment3.Controllers
         [HttpGet("Create"), Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
+            var categoriesList = new List<SelectListItem>();
             var viewModel = new ComponentTypeViewModel()
             {
-                Categories = _context.Category.ToList()
+                Categories = _context.Category.ToList().Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.CategoryId.ToString()
+                })
             };
 
             return View(viewModel);
