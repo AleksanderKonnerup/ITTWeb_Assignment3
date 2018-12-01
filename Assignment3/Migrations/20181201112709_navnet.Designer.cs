@@ -4,14 +4,16 @@ using Assignment3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Assignment3.Migrations
 {
     [DbContext(typeof(Assignment3Context))]
-    partial class Assignment3ContextModelSnapshot : ModelSnapshot
+    [Migration("20181201112709_navnet")]
+    partial class navnet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,7 +135,7 @@ namespace Assignment3.Migrations
 
             modelBuilder.Entity("Assignment3.Models.UserCredentials", b =>
                 {
-                    b.HasOne("Assignment3.Models.UserModel", "UserModel")
+                    b.HasOne("Assignment3.Models.UserModel")
                         .WithOne("UserCredentials")
                         .HasForeignKey("Assignment3.Models.UserCredentials", "Email")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -40,5 +40,7 @@ namespace Assignment3.Models
             get { return string.Join(',', CategorieIdsList); }
             set {  } //CategorieIdsList = value.Split(',').Cast<int>().AsEnumerable(); }
         }
+
     }
+    
 }
