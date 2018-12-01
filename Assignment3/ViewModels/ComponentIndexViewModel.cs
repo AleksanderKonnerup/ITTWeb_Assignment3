@@ -1,6 +1,7 @@
 ﻿using Assignment3.Models;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Assignment3.ViewModels
 {
@@ -8,6 +9,6 @@ namespace Assignment3.ViewModels
     {
         public IEnumerable<Component> Components { get; set; }
         public IEnumerable<ComponentType> ComponentTypes { get; set; }
-        public int SelectedComponentTypeId { get; set; }
+        public long SelectedComponentTypeId { get; set; }
     }
 }

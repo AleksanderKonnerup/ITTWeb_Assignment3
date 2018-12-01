@@ -5,6 +5,7 @@ using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
+using Assignment3.ViewModels;
 
 namespace Assignment3.Controllers
 {
@@ -21,8 +22,30 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentIndex")]
         public async Task<IActionResult> ComponentsIndex()
         {
-            var components = await _context.Component.ToListAsync();
-            return View(components);
+            var viewModel = new ComponentIndexViewModel
+            {
+                Components = await _context.Component.ToListAsync(),
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                SelectedComponentTypeId = 0
+            };
+
+            return View(viewModel);
+        }
+
+
+        [HttpGet("ComponentIndexForCategory")]
+        public async Task<IActionResult> ComponentIndexForCategory(long selectedComponentType)
+        {
+
+            var viewModel = new ComponentIndexViewModel
+            {
+                Components = await _context.Component.Where(x => x.ComponentTypeId ==  selectedComponentType).ToListAsync(),
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                SelectedComponentTypeId = selectedComponentType
+            };
+
+
+            return View("ComponentsIndex", viewModel);
         }
 
         [HttpGet("CreateComponent")]

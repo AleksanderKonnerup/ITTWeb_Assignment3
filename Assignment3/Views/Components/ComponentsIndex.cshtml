@@ -41,17 +41,18 @@
     <p>
         <a asp-action="CreateComponent">Create New</a>
     </p>
-    @using (Html.BeginForm("ComponentIndex", "ComponentTypes", FormMethod.Get))
+    @using (Html.BeginForm("ComponentIndexForCategory", "Components", FormMethod.Get))
     {
-        //@Html.HiddenFor(Model => Model.SelectedCategoryId)
-        <div>
-            @Html.DropDownListFor(x => x.SelectedComponentTypeId, new SelectList(Model.ComponentTypes.Select(x => x.ComponentTypeId)), new { @class = "form-control", style = "width: 250px" })
+        <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: right; padding-left: 0px">
+            @Html.DropDownListFor(x => x.SelectedComponentTypeId, Model.ComponentTypes.Select(x => new SelectListItem{Text = x.ComponentName, Value = x.ComponentTypeId.ToString()}), new { @class = "form-control", style = "width: 250px" })
         </div>
-        <div>
+        <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: left">
             <input type="submit" id="GetSessionsBtn" value="Select" class="btn btn-primary" />
         </div>
     }
-    <table class="table">
+<br/>
+<hr/>
+<table class="table">
         <thead>
             <tr>
                 <th>
