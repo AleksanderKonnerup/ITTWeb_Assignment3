@@ -35,7 +35,7 @@ namespace Assignment3.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginModel login)
         {
-            IActionResult response = Unauthorized();
+            IActionResult response = RedirectToAction("Login");
 
             var user = Authenticate(login);
 
@@ -81,29 +81,30 @@ namespace Assignment3.Controllers
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
-                response = Ok(new { message = "Success" });
+                response = RedirectToAction("Index", "Home");
             }
 
             return response;
         }
 
-        public UserModel Authenticate(LoginModel login)
+        private UserModel Authenticate(LoginModel login)
         {
-            var user = _context.User.First(x => x.Email == login.Email);
+            var credentials = _context.UserCredentials.FirstOrDefault(x => x.Email == login.Email);
 
-            UserModel returnValue = null;
+            UserModel user = null;
 
-            if (user.UserCredentials != null)
+            if (credentials != null)
             {
-                var hash = Hash.Create(login.Password, user.UserCredentials.Salt);
+                var hash = Hash.Create(login.Password, credentials.Salt);
 
-                if (hash == user.UserCredentials.Hash)
+                if (hash == credentials.Hash)
                 {
-                    returnValue = user;
+                    user = _context.User.FirstOrDefault(x => x.Email == login.Email);
+
                 }
             }
 
-            return returnValue;
+            return user;
         }
     }
 }

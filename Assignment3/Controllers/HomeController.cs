@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Assignment3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class HomeController : Controller
     {
         [HttpGet("Index")]

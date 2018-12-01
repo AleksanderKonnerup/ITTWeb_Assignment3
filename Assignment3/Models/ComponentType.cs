@@ -51,5 +51,7 @@ namespace Assignment3.Models
                 CategorieIdsList = fin;
             }
         }
+
     }
+    
 }

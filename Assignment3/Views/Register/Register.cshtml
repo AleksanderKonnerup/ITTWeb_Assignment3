@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "ITTWeb Assignment 3";
-    Layout = "_Layout";
+    Layout = "_LayoutRestricted";
 
 }
 
@@ -49,37 +49,37 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="FirstName" class="control-label">First Name</label>
-                    <input asp-for="FirstName" class="form-control" />
+                    <input asp-for="FirstName" class="form-control" required/>
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="LastName" class="control-label">Last Name</label>
-                    <input asp-for="LastName" class="form-control" Type="password"/>
+                    <input asp-for="LastName" class="form-control" required/>
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="StaffInitials" class="control-label">Staff Initials</label>
-                    <input asp-for="StaffInitials" class="form-control" />
+                    <input asp-for="StaffInitials" class="form-control" required/>
                     <span asp-validation-for="StaffInitials" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="AUId" class="control-label">AU Id</label>
-                    <input asp-for="AUId" class="form-control" />
+                    <input asp-for="AUId" class="form-control" required/>
                     <span asp-validation-for="AUId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" required/>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" class="form-control" />
+                    <input asp-for="Password" class="form-control" required/>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
-                    <input asp-for="PhoneNumber" class="form-control" />
+                    <input asp-for="PhoneNumber" class="form-control" required/>
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -88,7 +88,7 @@
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Register" class="btn btn-default" />
+                    <input type="submit" value="Register" class="btn btn-default"/>
                 </div>
             </form>
         </div>
