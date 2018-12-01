@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class ComponentCategoriesController : Controller
     {
         private readonly Assignment3Context _context;
@@ -45,13 +43,13 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        [HttpGet("Create")]
+        [HttpGet("Create"), Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
         
-        [HttpPost("Create")]
+        [HttpPost("Create"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
@@ -82,23 +80,20 @@ namespace Assignment3.Controllers
 
         [HttpPost("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Category category)
+        public async Task<IActionResult> Edit(int CategoryId, string Name)
         {
-            if (id != category.CategoryId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(category);
+                    var temp = await _context.Category.FirstOrDefaultAsync(x => x.CategoryId == CategoryId);
+                    temp.Name = Name;
+                    _context.Update(temp);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CategoryId))
+                    if (!CategoryExists(CategoryId))
                     {
                         return NotFound();
                     }
@@ -109,7 +104,7 @@ namespace Assignment3.Controllers
                 }
                 return RedirectToAction(nameof(ComponentCategoriesIndex));
             }
-            return View(category);
+            return View();
         }
 
         [HttpGet("Delete")]
@@ -130,11 +125,11 @@ namespace Assignment3.Controllers
             return View(category);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int CategoryId)
         {
-            var category = await _context.Category.FindAsync(id);
+            var category = await _context.Category.FindAsync(CategoryId);
             if (category == null)
             {
                 return NotFound();
@@ -148,7 +143,7 @@ namespace Assignment3.Controllers
         {
             return _context.Category.Any(e => e.CategoryId == id);
         }
-        
+
         [HttpGet("List")]
         public async Task<IActionResult> List(Category category)
         {

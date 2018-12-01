@@ -1,5 +1,6 @@
 ﻿using Assignment3.Models;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace Assignment3.ViewModels
 {
@@ -16,5 +17,7 @@ namespace Assignment3.ViewModels
         public string WikiLink { get; set; }
         public string AdminComment { get; set; }
         public IFormFile Image { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<int> SelectedCategories { get; set; }
     }
 }

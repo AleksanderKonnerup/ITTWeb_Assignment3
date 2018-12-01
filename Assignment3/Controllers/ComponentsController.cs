@@ -5,10 +5,12 @@ using Assignment3.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
+using Assignment3.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class ComponentsController : Controller
     {
         private readonly Assignment3Context _context;
@@ -21,23 +23,51 @@ namespace Assignment3.Controllers
         [HttpGet("ComponentIndex")]
         public async Task<IActionResult> ComponentsIndex()
         {
-            var components = await _context.Component.ToListAsync();
-            return View(components);
+            var viewModel = new ComponentIndexViewModel()
+            {
+                Components = await _context.Component.ToListAsync(),
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId
+            };
+           
+            return View(viewModel);
         }
 
-        [HttpGet("CreateComponent")]
-        public IActionResult CreateComponent()
+        [HttpGet("ComponentIndexForCategory")]
+        public async Task<IActionResult> ComponentIndexForType(int selectedComponentTypeId)
         {
-            return View();
+            var viewModel = new ComponentIndexViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                Components = await _context.Component.Where(x => x.ComponentTypeIdsList.Contains(selectedComponentTypeId)).ToListAsync()
+            };
+
+            viewModel.SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentTypeId == selectedComponentTypeId).Result.ComponentTypeId;
+
+            return View("ComponentsIndex", viewModel);
         }
 
-        [HttpPost("CreateComponent")]
+        [HttpGet("CreateComponent"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateComponent()
+        {
+            var viewModel = new ComponentCreateViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost("CreateComponent"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateComponent(Component componentModel)
+        public IActionResult CreateComponent(ComponentCreateViewModel componentViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Component.Add(componentModel);
+                var tempList = new List<long>() { _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentName == "All").Result.ComponentTypeId, componentViewModel.SelectedComponentTypeId};
+                componentViewModel.Component.ComponentTypeIdsList = tempList;
+                _context.Component.Add(componentViewModel.Component);
                 _context.SaveChanges();
                 return RedirectToAction("ComponentsIndex");
             }

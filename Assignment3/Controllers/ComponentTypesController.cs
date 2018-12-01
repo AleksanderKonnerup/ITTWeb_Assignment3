@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Http;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Assignment3.Data;
@@ -8,13 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
-using FileResult = Microsoft.AspNetCore.Mvc.FileResult;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class ComponentTypesController : Controller
     {
         private readonly Assignment3Context _context;
@@ -30,11 +27,26 @@ namespace Assignment3.Controllers
 
             var viewModel = new ComponentTypesIndexViewModel() {
                 ComponentTypes = await _context.ComponentType.ToListAsync(),
-                //Categories = await _context.Category.ToListAsync(),
-                //SelectedCategoryId = _context.Category.SingleOrDefaultAsync(x => x.Name == "All").Result.CategoryId
+                Categories = await _context.Category.ToListAsync(),
+                SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.Name == "All").Result.CategoryId
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet("ComponentTypesIndexForCategory")]
+        public async Task<IActionResult> ComponentTypesIndexForCategory(int selectedCategoryId)
+        {
+
+            var viewModel = new ComponentTypesIndexViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+            };
+
+            viewModel.Categories = await _context.Category.ToListAsync();
+            viewModel.SelectedCategoryId = _context.Category.FirstOrDefaultAsync(x => x.CategoryId == selectedCategoryId).Result.CategoryId;
+
+            return View("ComponentTypesIndex", viewModel);
         }
 
         [HttpGet("Details")]
@@ -55,14 +67,19 @@ namespace Assignment3.Controllers
             return View(componentType);
         }
 
-        [HttpGet("Create")]
+        [HttpGet("Create"), Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new ComponentTypeViewModel()
+            {
+                Categories = _context.Category.ToList()
+            };
+
+            return View(viewModel);
         }
 
 
-        [HttpPost("Create")]
+        [HttpPost("Create"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ComponentTypeViewModel componentType)
         {
@@ -78,7 +95,8 @@ namespace Assignment3.Controllers
                     Manufacturer = componentType.Manufacturer,
                     AdminComment = componentType.AdminComment,
                     ImageUrl = componentType.ImageUrl,
-                    Location = componentType.Location
+                    Location = componentType.Location,
+                    CategorieIdsList = componentType.SelectedCategories
                 };
 
 
