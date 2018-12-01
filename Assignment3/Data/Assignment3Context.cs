@@ -15,7 +15,7 @@ namespace Assignment3.Data
         {
             modelBuilder.Entity<UserModel>()
                 .HasOne(x => x.UserCredentials)
-                .WithOne()
+                .WithOne(x => x.UserModel)
                 .HasForeignKey<UserCredentials>(x => x.Email);
 
         }
@@ -26,6 +26,6 @@ namespace Assignment3.Data
 
         public DbSet<Component> Component { get; set; }
         public DbSet<UserModel> User { get; set; }
-        public DbSet<ESImage> Image { get; set; }
+        public DbSet<UserCredentials> UserCredentials { get; set; }
     }
 }

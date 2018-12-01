@@ -25,6 +25,9 @@
     <Content Update="Views\ComponentCategories\List.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_LayoutRestricted.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

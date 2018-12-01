@@ -27,9 +27,15 @@ namespace Assignment3.Controllers
         [HttpPost("RegisterUser")]
         public IActionResult RegisterUser(RegisterModel registerModel)
         {
-            CreateUser(registerModel);
+            IActionResult result = BadRequest();
 
-            return Ok(); //TODO: Redirect to login view?
+            if (ModelState.IsValid)
+            {
+                CreateUser(registerModel);
+                result = RedirectToAction("Login", "Login");
+            }
+
+            return result;
         }
 
         private void CreateUser(RegisterModel registerModel)
@@ -54,6 +60,7 @@ namespace Assignment3.Controllers
 
 
             _context.User.Add(newUser);
+            _context.SaveChanges();
         }
     }
 }

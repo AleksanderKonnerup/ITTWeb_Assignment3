@@ -8,5 +8,6 @@ namespace Assignment3.Models
         public string Email { get; set; }
         public string Hash { get; set; }
         public byte[] Salt { get; set; }
+        public UserModel UserModel { get; set; }
     }
 }

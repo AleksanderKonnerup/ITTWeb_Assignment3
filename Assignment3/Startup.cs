@@ -1,4 +1,6 @@
-﻿using Assignment3.Data;
+﻿using System;
+using Assignment3.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +22,15 @@ namespace Assignment3
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                    options.LoginPath = new PathString("/Login/Login");
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.Name = "auth_cookie";
+                });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -49,6 +60,7 @@ namespace Assignment3
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
