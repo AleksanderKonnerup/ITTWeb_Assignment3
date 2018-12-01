@@ -39,6 +39,18 @@
         <p>
             <a asp-action="Create">Create New Component Type</a>
         </p>
+
+        @using (Html.BeginForm("ComponentTypesIndexForCategory", "ComponentTypes", FormMethod.Get))
+        {
+            //@Html.HiddenFor(Model => Model.SelectedCategoryId)
+            <div>
+                @Html.DropDownListFor(x => x.SelectedCategoryId, new SelectList(Model.Categories.Select(x => x.CategoryId)), new { @class = "form-control", style = "width: 250px" })
+            </div>
+            <div>
+                <input type="submit" id="GetSessionsBtn" value="Select" class="btn btn-primary" />
+            </div>
+        }
+
         <table class="table">
             <thead>
                 <tr>
@@ -75,7 +87,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.ComponentTypes)
+
+                @foreach (var item in Model.ComponentTypes.Where(x => x.CategorieIdsList.Contains(Model.SelectedCategoryId)))
                 {
                     <tr>
                         <td>
@@ -97,7 +110,7 @@
                             @if (item.Image != null)
                             {
                                 var imgsourceFromUrlActions = Url.Action("GetImgFromComponentType", "ComponentTypes", new { id = item.ComponentTypeId });
-                               
+
                                 <img src="@imgsourceFromUrlActions" alt="@item.FileName" height="100" width="100" />
                             }
                         </td>
