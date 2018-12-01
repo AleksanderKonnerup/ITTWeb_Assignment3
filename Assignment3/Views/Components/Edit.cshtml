@@ -46,9 +46,9 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ComponentId" />
                 <div class="form-group">
-                    <label asp-for="ComponentTypeIdsList.LastOrDefault()" class="control-label">Component Type Id</label>
-                    <input asp-for="ComponentTypeIdsList.LastOrDefault()" class="form-control" />
-                    <span asp-validation-for="ComponentTypeIdsList.LastOrDefault()" class="text-danger"></span>
+                    <label asp-for="ComponentTypeIdsList.ToArray()[1]" class="control-label">Component Type Id</label>
+                    <input asp-for="ComponentTypeIdsList.ToArray()[1]" class="form-control" />
+                    <span asp-validation-for="ComponentTypeIdsList.ToArray()[1]" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ComponentNumber" class="control-label">Component Number</label>

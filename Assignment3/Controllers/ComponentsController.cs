@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment3.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class ComponentsController : Controller
     {
         private readonly Assignment3Context _context;
@@ -32,7 +33,21 @@ namespace Assignment3.Controllers
             return View(viewModel);
         }
 
-        [HttpGet("CreateComponent")]
+        [HttpGet("ComponentIndexForCategory")]
+        public async Task<IActionResult> ComponentIndexForType(int selectedComponentTypeId)
+        {
+            var viewModel = new ComponentIndexViewModel()
+            {
+                ComponentTypes = await _context.ComponentType.ToListAsync(),
+                Components = await _context.Component.Where(x => x.ComponentTypeIdsList.Contains(selectedComponentTypeId)).ToListAsync()
+            };
+
+            viewModel.SelectedComponentTypeId = _context.ComponentType.FirstOrDefaultAsync(x => x.ComponentTypeId == selectedComponentTypeId).Result.ComponentTypeId;
+
+            return View("ComponentsIndex", viewModel);
+        }
+
+        [HttpGet("CreateComponent"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateComponent()
         {
             var viewModel = new ComponentCreateViewModel()
@@ -44,7 +59,7 @@ namespace Assignment3.Controllers
             return View(viewModel);
         }
 
-        [HttpPost("CreateComponent")]
+        [HttpPost("CreateComponent"), Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult CreateComponent(ComponentCreateViewModel componentViewModel)
         {

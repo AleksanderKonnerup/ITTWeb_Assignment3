@@ -6,6 +6,11 @@ namespace Assignment3.Models
 {
     public class Component
     {
+        public Component()
+        {
+            ComponentTypeIdsList = new List<long>();
+        }
+
         public long ComponentId { get; set; }
         public int ComponentNumber { get; set; }
         public string SerialNo { get; set; }

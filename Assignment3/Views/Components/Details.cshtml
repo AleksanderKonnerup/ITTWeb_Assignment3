@@ -43,10 +43,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ComponentTypeIdsList.LastOrDefault())
+            @Html.DisplayNameFor(model => model.ComponentTypeIdsList.ToArray()[1])
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ComponentTypeIdsList.LastOrDefault())
+            @Html.DisplayFor(model => model.ComponentTypeIdsList.ToArray()[1])
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ComponentNumber)

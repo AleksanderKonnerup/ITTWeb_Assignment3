@@ -41,7 +41,7 @@
     <p>
         <a asp-action="CreateComponent">Create New</a>
     </p>
-    @using (Html.BeginForm("ComponentIndex", "ComponentTypes", FormMethod.Get))
+    @using (Html.BeginForm("ComponentIndexForType", "Components", FormMethod.Get))
     {
         //@Html.HiddenFor(Model => Model.SelectedCategoryId)
         <div>
@@ -79,11 +79,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Components.Where(x => x.ComponentTypeIdsList.Contains(Model.SelectedComponentTypeId)))
+            @foreach (var item in Model.Components)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ComponentTypeIdsList.LastOrDefault())
+                        @Html.DisplayFor(modelItem => item.ComponentTypeIdsList.ToArray()[1])
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ComponentNumber)
